@@ -1,4 +1,4 @@
-package com.littlechef.main.Repositories;
+package com.littlechef.main.repositories;
 
 import com.littlechef.main.models.PlanoModel;
 import org.springframework.data.jpa.repository.JpaRepository;

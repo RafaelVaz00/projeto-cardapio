@@ -1,7 +1,7 @@
-package com.littlechef.main.Controllers;
+package com.littlechef.main.controllers;
 
-import com.littlechef.main.DTOs.UsuarioRecordDto;
-import com.littlechef.main.Repositories.UsuarioRepository;
+import com.littlechef.main.dtos.UsuarioRecordDto;
+import com.littlechef.main.repositories.UsuarioRepository;
 import com.littlechef.main.models.UsuarioModel;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -68,5 +67,3 @@ public class UsuarioController {
     }
 
 }
-//Adicionar paginacao, filtros de buscas, personalizacao de erros, camada service para regras de negocio, criar beans do tipo service, melhorar documentação, testes, padronização
-// de datas.

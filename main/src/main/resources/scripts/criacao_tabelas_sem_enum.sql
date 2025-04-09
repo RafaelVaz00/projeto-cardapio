@@ -19,7 +19,7 @@ CREATE TABLE aplicacao.PLANO(
                                 NOME_PLANO VARCHAR(16) NOT NULL,
                                 DESCRICAO_PLANO VARCHAR(230) NOT NULL,
                                 VALOR_PLANO NUMERIC CHECK ( VALOR_PLANO >=0 ) NOT NULL,
-                                ESTADO_PLANO VISIBILIDADE DEFAULT('ATIVO'),
+                                ESTADO_PLANO VARCHAR(7) NOT NULL,
                                 FK_ID_USUARIO UUID
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE aplicacao.CARDAPIO_EMPRESA(
                                            ID_CARDAPIO SERIAL PRIMARY KEY ,
                                            NOME_EMPRESA VARCHAR(26),
                                            DESCRICAO_EMPRESA VARCHAR(120),
-                                           ESTADO_ATUALIZACAO status_atualizacao default('ATUALIZADO'),
+                                           ESTADO_ATUALIZACAO VARCHAR(13),
                                            ULTIMA_ATUALIZACAO DATE,
                                            LINK_PAGINA VARCHAR(120),
                                            FK_ID_USUARIO UUID,
@@ -38,7 +38,7 @@ CREATE TABLE aplicacao.PRODUTO(
                                   ID_PRODUTO SERIAL PRIMARY KEY,
                                   NOME_PRODUTO VARCHAR(36) NOT NULL,
                                   DESCRICAO_PRODUTO VARCHAR(240) NOT NULL,
-                                  ESTADO_PRODUTO VISIBILIDADE DEFAULT('ATIVO') NOT NULL,
+                                  ESTADO_PRODUTO VARCHAR(7) NOT NULL ,
                                   PRECO_PRODUTO NUMERIC CHECK ( PRECO_PRODUTO >=0 ) NOT NULL,
                                   FK_ID_CATEGORIA SERIAL
 );
@@ -54,7 +54,7 @@ CREATE TABLE aplicacao.CARDAPIO_PRODUTO (
 CREATE TABLE aplicacao.CATEGORIA(
                                     ID_CATEGORIA SERIAL PRIMARY KEY,
                                     NOME_CATEGORIA VARCHAR(120) NOT NULL,
-                                    VISIBILIDADE_CATEGORIA visibilidade DEFAULT('ATIVO') NOT NULL,
+                                    VISIBILIDADE_CATEGORIA  VARCHAR(7) NOT NULL ,
                                     FK_ID_PRODUTO SERIAL null
 );
 
