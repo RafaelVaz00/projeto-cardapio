@@ -2,9 +2,11 @@ package com.littlechef.main.services;
 
 import com.littlechef.main.models.CardapioEmpresaModel;
 import com.littlechef.main.repositories.CardapioEmpresaRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.Optional;
 
@@ -13,7 +15,7 @@ public class CardapioEmpresaService {
     @Autowired
     private CardapioEmpresaRepository cardapioEmpresaRepository;
 
-    public CardapioEmpresaModel buscarCardapioEmpresa(Integer id){
+    public CardapioEmpresaModel buscarCardapioEmpresaPorId(Integer id){
         Optional<CardapioEmpresaModel> cardapio = cardapioEmpresaRepository.findById(id);
 
         if(cardapio.isPresent()){
@@ -28,4 +30,26 @@ public class CardapioEmpresaService {
 
     }
 
+    public CardapioEmpresaModel atualizarCardapio(Integer id, CardapioEmpresaModel cardapioEmpresaModel){
+        Optional<CardapioEmpresaModel> cardapioO = cardapioEmpresaRepository.findById(id);
+
+
+        if(cardapioO.isPresent()){
+            BeanUtils.copyProperties(cardapioEmpresaModel, cardapioO, "idCardapio");
+            return cardapioEmpresaRepository.save(cardapioO.get());
+        }
+        return null;
+    }
+
+
+    public ResponseEntity<Object> deletarCardapio(Integer id){
+
+        Optional<CardapioEmpresaModel> cardapioO = cardapioEmpresaRepository.findById(id);
+
+            if(cardapioO.isEmpty()){
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body("Categoria não existente.");
+            }
+            cardapioEmpresaRepository.delete(cardapioO.get());
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).body("A categoria de Id" + cardapioO.get().getIdCardapio() + " foi deletada com sucesso.");
+    }
 }

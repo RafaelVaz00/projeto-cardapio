@@ -3,6 +3,7 @@ package com.littlechef.main.services;
 
 import com.littlechef.main.models.CategoriaModel;
 import com.littlechef.main.repositories.CategoriaRepository;
+import org.apache.coyote.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +47,7 @@ public class CategoriaService {
         Optional<CategoriaModel> categoriaO = categoriaRepository.findById(id);
 
         if(categoriaO.isEmpty()){
-            return null;
+            return categoria;
         }
         var categoriaAtualizada = categoriaO.get();
         BeanUtils.copyProperties(categoria, categoriaAtualizada, "idCategoria");
